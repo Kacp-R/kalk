@@ -14,9 +14,9 @@ class MyApp extends StatefulWidget{
 }
 
 class _MyAppState extends State<MyApp> {
-  String _testS = "";
+  String _firstS = "";
   String _secondS = "";
-  double _test = 0;
+  double _first = 0;
   double _second = 0;
   bool _dec = false;
   int _decC = 0;
@@ -33,7 +33,7 @@ class _MyAppState extends State<MyApp> {
         body: Column(
         children: [
           Text('$_secondS'),
-          Text('$_testS'),
+          Text('$_firstS'),
           Column(
           children: [
             Row(
@@ -94,62 +94,62 @@ class _MyAppState extends State<MyApp> {
         if(input==-1){
           if(_dec)
             return;
-          _testS+='.';
+          _firstS+='.';
           _dec=true;
-          _decC = _testS.length;
+          _decC = _firstS.length;
           return;
         }
-        _testS+=input.toString();
+        _firstS+=input.toString();
       });
   }
   void func(String input){
     setState(() {
       if(input=='cl') {
-        _test=0;
+        _first=0;
         _second=0;
-        _testS='';
+        _firstS='';
         _secondS='';
         _dec=false;
     }
       if(input=='dl') {
-        if (_testS != null && _testS.length > 0) {
-          _testS = _testS.substring(0, _testS.length - 1);
-          if(_testS.length+1==_decC)
+        if (_firstS != null && _firstS.length > 0) {
+          _firstS = _firstS.substring(0, _firstS.length - 1);
+          if(_firstS.length+1==_decC)
             _dec = false;
         }
 
       }else {
-        if (_testS == ''||input=='') return;
-        _test=double.parse(_testS);
+        if (_firstS == ''||input=='') return;
+        _first=double.parse(_firstS);
         if (_secondS != '') {
           _second=double.parse(_secondS);
           switch (input) {
             case '+':
               {
-                _test += _second;
+                _first += _second;
               }
               break;
             case '-':
               {
-                _test = _second - _test;
+                _first = _second - _first;
               }
               break;
             case '*':
               {
-                _test *= _second;
+                _first *= _second;
               }
               break;
             case '/':
               {
-                _test = _second / _test;
+                _first = _second / _first;
               }
               break;
           }
         }
         _dec = false;
-        _second=_test;
+        _second=_first;
         _secondS=_second.toString();
-        _testS = '';
+        _firstS = '';
       }
     });
   }
