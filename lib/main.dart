@@ -20,6 +20,7 @@ class _MyAppState extends State<MyApp> {
   double _second = 0;
   bool _dec = false;
   int _decC = 0;
+  String _last = '';
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +78,7 @@ class _MyAppState extends State<MyApp> {
               children: [
                 TextButton(onPressed: ()=> click(-1), child: Text(',')),
                 TextButton(onPressed: ()=> click(0), child: Text('0')),
-                TextButton(onPressed: ()=> func('dl'), child: Text('del')),
+                TextButton(onPressed: ()=> func('='), child: Text('=')),
                 TextButton(onPressed: ()=> func('/'), child: Text('/')),
               ],
             ),
@@ -119,11 +120,12 @@ class _MyAppState extends State<MyApp> {
         }
 
       }else {
-        if (_firstS == ''||input=='') return;
-        _first=double.parse(_firstS);
+        if (input == '=') {
+          if (_firstS == '' || _last == '') return;
+        _first = double.parse(_firstS);
         if (_secondS != '') {
-          _second=double.parse(_secondS);
-          switch (input) {
+          _second = double.parse(_secondS);
+          switch (_last) {
             case '+':
               {
                 _first += _second;
@@ -147,9 +149,43 @@ class _MyAppState extends State<MyApp> {
           }
         }
         _dec = false;
-        _second=_first;
-        _secondS=_second.toString();
+        _second = _first;
+        _secondS = _second.toString();
         _firstS = '';
+        } else {
+          _last = input;
+          if (_firstS == '' || input == '') return;
+          _first = double.parse(_firstS);
+          if (_secondS != '') {
+            _second = double.parse(_secondS);
+            switch (input) {
+              case '+':
+                {
+                  _first += _second;
+                }
+                break;
+              case '-':
+                {
+                  _first = _second - _first;
+                }
+                break;
+              case '*':
+                {
+                  _first *= _second;
+                }
+                break;
+              case '/':
+                {
+                  _first = _second / _first;
+                }
+                break;
+            }
+          }
+          _dec = false;
+          _second = _first;
+          _secondS = _second.toString();
+          _firstS = '';
+        }
       }
     });
   }
