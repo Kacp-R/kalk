@@ -37,8 +37,8 @@ class _MyAppState extends State<MyApp> {
             mainAxisAlignment: MainAxisAlignment.center,
 
             children: [
-              ElevatedButton(onPressed: ()=> copy(1), child: Text('$_secondS'), style: ElevatedButton.styleFrom(minimumSize: Size(100, 25)),),
-              ElevatedButton(onPressed: ()=> copy(0), child: Text('$_firstS'), style: ElevatedButton.styleFrom(minimumSize: Size(100, 25)),),
+              ElevatedButton(onPressed: ()=> copy(1), child: Text('$_secondS'), style: ElevatedButton.styleFrom(minimumSize: Size(100, 35)),),
+              ElevatedButton(onPressed: ()=> copy(0), child: Text('$_firstS'), style: ElevatedButton.styleFrom(minimumSize: Size(100, 35)),),
             ],
           ),
           Column(
@@ -46,9 +46,8 @@ class _MyAppState extends State<MyApp> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                TextButton(onPressed: ()=> func('cl'), child: Text('cl')),
+                TextButton(onPressed: ()=> func('cl'), child: Text('cl'), style: TextButton.styleFrom(minimumSize: Size(120, 35)),),
                 TextButton(onPressed: ()=> func('dl'), child: Text('dl')),
-                TextButton(onPressed: ()=> func(''), child: Text(' ')),
                 TextButton(onPressed: ()=> func(''), child: Text(' ')),
               ],
             ),
