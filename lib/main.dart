@@ -1,5 +1,3 @@
-import 'dart:io';
-import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -132,72 +130,45 @@ class _MyAppState extends State<MyApp> {
 
       }else {
         if (input == '=') {
-          if (_firstS == '' || _last == '') return;
-        _first = double.parse(_firstS);
-        if (_secondS != '') {
-          _second = double.parse(_secondS);
-          switch (_last) {
-            case '+':
-              {
-                _first += _second;
-              }
-              break;
-            case '-':
-              {
-                _first = _second - _first;
-              }
-              break;
-            case '*':
-              {
-                _first *= _second;
-              }
-              break;
-            case '/':
-              {
-                _first = _second / _first;
-              }
-              break;
-          }
-        }
-        _dec = false;
-        _second = _first;
-        _secondS = _second.toString();
-        _firstS = '';
+          funcC(_last);
         } else {
           _last = input;
-          if (_firstS == '' || input == '') return;
-          _first = double.parse(_firstS);
-          if (_secondS != '') {
-            _second = double.parse(_secondS);
-            switch (input) {
-              case '+':
-                {
-                  _first += _second;
-                }
-                break;
-              case '-':
-                {
-                  _first = _second - _first;
-                }
-                break;
-              case '*':
-                {
-                  _first *= _second;
-                }
-                break;
-              case '/':
-                {
-                  _first = _second / _first;
-                }
-                break;
-            }
-          }
-          _dec = false;
-          _second = _first;
-          _secondS = _second.toString();
-          _firstS = '';
+          funcC(input);
         }
       }
     });
+  }
+  void funcC(String inp){
+    if (_firstS == '' || inp == '') return;
+    _first = double.parse(_firstS);
+    if (_secondS != '') {
+      _second = double.parse(_secondS);
+      switch (inp) {
+        case '+':
+          {
+            _first += _second;
+          }
+          break;
+        case '-':
+          {
+            _first = _second - _first;
+          }
+          break;
+        case '*':
+          {
+            _first *= _second;
+          }
+          break;
+        case '/':
+          {
+            _first = _second / _first;
+          }
+          break;
+      }
+    }
+    _dec = false;
+    _second = _first;
+    _secondS = _second.toString();
+    _firstS = '';
   }
 }
