@@ -37,8 +37,8 @@ class _MyAppState extends State<MyApp> {
             mainAxisAlignment: MainAxisAlignment.center,
 
             children: [
-              ElevatedButton(onPressed: ()=> copy(1), child: Text('$_secondS')),
-              ElevatedButton(onPressed: ()=> copy(0), child: Text('$_firstS')),
+              ElevatedButton(onPressed: ()=> copy(1), child: Text('$_secondS'), style: ElevatedButton.styleFrom(minimumSize: Size(100, 25)),),
+              ElevatedButton(onPressed: ()=> copy(0), child: Text('$_firstS'), style: ElevatedButton.styleFrom(minimumSize: Size(100, 25)),),
             ],
           ),
           Column(
