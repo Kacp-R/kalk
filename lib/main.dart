@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   print("Hello");
@@ -33,8 +34,14 @@ class _MyAppState extends State<MyApp> {
         ),
         body: Column(
         children: [
-          Text('$_secondS'),
-          Text('$_firstS'),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+
+            children: [
+              ElevatedButton(onPressed: ()=> copy(1), child: Text('$_secondS')),
+              ElevatedButton(onPressed: ()=> copy(0), child: Text('$_firstS')),
+            ],
+          ),
           Column(
           children: [
             Row(
@@ -102,6 +109,12 @@ class _MyAppState extends State<MyApp> {
         }
         _firstS+=input.toString();
       });
+  }
+  void copy(int val){
+    if(val==0)
+      Clipboard.setData(ClipboardData(text: "$_firstS"));
+    else
+      Clipboard.setData(ClipboardData(text: "$_secondS"));
   }
   void func(String input){
     setState(() {
