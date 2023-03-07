@@ -25,9 +25,6 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       title: "test1",
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text("Kalkulator"),
-        ),
         body: Column(
         children: [
           Row(
