@@ -26,7 +26,7 @@ class _MyAppState extends State<MyApp> {
       title: "test1",
       home: Scaffold(
         appBar: AppBar(
-          title: const Text("jan"),
+          title: const Text("Kalkulator"),
         ),
         body: Column(
         children: [
