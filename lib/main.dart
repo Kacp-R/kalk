@@ -33,7 +33,7 @@ class _MyAppState extends State<MyApp> {
         backgroundColor: Color(_bgcl),
         body: Column(
         children: [
-          Switch(value: _mem, onChanged: (bool)=> toggle(true)),
+          Switch(value: _mem, onChanged: (bool)=> toggle()),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
 
@@ -95,7 +95,7 @@ class _MyAppState extends State<MyApp> {
       ),
     );
   }
-  void toggle (bool? al){
+  void toggle (){
     setState(() {
       _bgcl = 0xFFFFFFFF - _bgcl + 0xFF000000;
       _rescl = 0xFFFFFFFF - _rescl + 0xFF000000;
