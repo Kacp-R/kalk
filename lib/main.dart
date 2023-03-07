@@ -29,10 +29,16 @@ class _MyAppState extends State<MyApp> {
     // TODO: implement build
     return MaterialApp(
       title: "test1",
-      home: Scaffold(
+        home: Scaffold(
         backgroundColor: Color(_bgcl),
-        body: Column(
-        children: [
+    body: Column(
+    children: [
+    Expanded(flex: 1, child: Container()), // empty space
+    Expanded(
+    flex: 4,
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+    children: [
           Switch(value: _mem, onChanged: (bool)=> toggle()),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -92,6 +98,9 @@ class _MyAppState extends State<MyApp> {
         ),
         ],
         ),
+    ),
+          ],
+    ),
       ),
     );
   }
