@@ -18,6 +18,11 @@ class _MyAppState extends State<MyApp> {
   bool _dec = false;
   int _decC = 0;
   String _last = '';
+  int _bgcl = 0xFFFAFAFA;
+  int _rescl = 0xFFFAFAEA;
+  int _fgcl = 0xFF000000;
+  int _btncl = 0xFFEEEEEE;
+  bool _mem = false;
 
   @override
   Widget build(BuildContext context) {
@@ -25,14 +30,16 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       title: "test1",
       home: Scaffold(
+        backgroundColor: Color(_bgcl),
         body: Column(
         children: [
+          Switch(value: _mem, onChanged: (bool)=> toggle(true)),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
 
             children: [
-              ElevatedButton(onPressed: ()=> copy(1), child: Text('$_secondS'), style: ElevatedButton.styleFrom(minimumSize: Size(120, 35)),),
-              ElevatedButton(onPressed: ()=> copy(0), child: Text('$_firstS'), style: ElevatedButton.styleFrom(minimumSize: Size(120, 35)),),
+              ElevatedButton(onPressed: ()=> copy(1), child: Text('$_secondS'), style: ElevatedButton.styleFrom(minimumSize: Size(120, 35), backgroundColor: Color(_rescl), foregroundColor: Color(_fgcl))),
+              ElevatedButton(onPressed: ()=> copy(0), child: Text('$_firstS'), style: ElevatedButton.styleFrom(minimumSize: Size(120, 35), backgroundColor: Color(_rescl), foregroundColor: Color(_fgcl))),
             ],
           ),
           Column(
@@ -40,45 +47,45 @@ class _MyAppState extends State<MyApp> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                TextButton(onPressed: ()=> func('cl'), child: Text('cl'), style: TextButton.styleFrom(minimumSize: Size(120, 35)),),
-                TextButton(onPressed: ()=> func('dl'), child: Text('dl')),
-                TextButton(onPressed: ()=> click(-2), child: Text('+/-')),
+                TextButton(onPressed: ()=> func('cl'), child: Text('cl'), style: TextButton.styleFrom(minimumSize: Size(120, 35), backgroundColor: Color(_btncl), foregroundColor: Color(_fgcl))),
+                TextButton(onPressed: ()=> func('dl'), child: Text('dl'), style: TextButton.styleFrom(backgroundColor: Color(_btncl), foregroundColor: Color(_fgcl))),
+                TextButton(onPressed: ()=> click(-2), child: Text('+/-'), style: TextButton.styleFrom(backgroundColor: Color(_btncl), foregroundColor: Color(_fgcl))),
               ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                TextButton(onPressed: ()=> click(1), child: Text('1')),
-                TextButton(onPressed: ()=> click(2), child: Text('2')),
-                TextButton(onPressed: ()=> click(3), child: Text('3')),
-                TextButton(onPressed: ()=> func('+'), child: Text('+')),
+                TextButton(onPressed: ()=> click(1), child: Text('1'), style: TextButton.styleFrom(backgroundColor: Color(_btncl), foregroundColor: Color(_fgcl))),
+                TextButton(onPressed: ()=> click(2), child: Text('2'), style: TextButton.styleFrom(backgroundColor: Color(_btncl), foregroundColor: Color(_fgcl))),
+                TextButton(onPressed: ()=> click(3), child: Text('3'), style: TextButton.styleFrom(backgroundColor: Color(_btncl), foregroundColor: Color(_fgcl))),
+                TextButton(onPressed: ()=> func('+'), child: Text('+'), style: TextButton.styleFrom(backgroundColor: Color(_btncl), foregroundColor: Color(_fgcl))),
               ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                TextButton(onPressed: ()=> click(4), child: Text('4')),
-                TextButton(onPressed: ()=> click(5), child: Text('5')),
-                TextButton(onPressed: ()=> click(6), child: Text('6')),
-                TextButton(onPressed: ()=> func('-'), child: Text('-')),
+                TextButton(onPressed: ()=> click(4), child: Text('4'), style: TextButton.styleFrom(backgroundColor: Color(_btncl), foregroundColor: Color(_fgcl))),
+                TextButton(onPressed: ()=> click(5), child: Text('5'), style: TextButton.styleFrom(backgroundColor: Color(_btncl), foregroundColor: Color(_fgcl))),
+                TextButton(onPressed: ()=> click(6), child: Text('6'), style: TextButton.styleFrom(backgroundColor: Color(_btncl), foregroundColor: Color(_fgcl))),
+                TextButton(onPressed: ()=> func('-'), child: Text('-'), style: TextButton.styleFrom(backgroundColor: Color(_btncl), foregroundColor: Color(_fgcl))),
               ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                TextButton(onPressed: ()=> click(7), child: Text('7')),
-                TextButton(onPressed: ()=> click(8), child: Text('8')),
-                TextButton(onPressed: ()=> click(9), child: Text('9')),
-                TextButton(onPressed: ()=> func('*'), child: Text('*')),
+                TextButton(onPressed: ()=> click(7), child: Text('7'), style: TextButton.styleFrom(backgroundColor: Color(_btncl), foregroundColor: Color(_fgcl))),
+                TextButton(onPressed: ()=> click(8), child: Text('8'), style: TextButton.styleFrom(backgroundColor: Color(_btncl), foregroundColor: Color(_fgcl))),
+                TextButton(onPressed: ()=> click(9), child: Text('9'), style: TextButton.styleFrom(backgroundColor: Color(_btncl), foregroundColor: Color(_fgcl))),
+                TextButton(onPressed: ()=> func('*'), child: Text('*'), style: TextButton.styleFrom(backgroundColor: Color(_btncl), foregroundColor: Color(_fgcl))),
               ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                TextButton(onPressed: ()=> click(-1), child: Text(',')),
-                TextButton(onPressed: ()=> click(0), child: Text('0')),
-                TextButton(onPressed: ()=> func('='), child: Text('=')),
-                TextButton(onPressed: ()=> func('/'), child: Text('/')),
+                TextButton(onPressed: ()=> click(-1), child: Text(','), style: TextButton.styleFrom(backgroundColor: Color(_btncl), foregroundColor: Color(_fgcl))),
+                TextButton(onPressed: ()=> click(0), child: Text('0'), style: TextButton.styleFrom(backgroundColor: Color(_btncl), foregroundColor: Color(_fgcl))),
+                TextButton(onPressed: ()=> func('='), child: Text('='), style: TextButton.styleFrom(backgroundColor: Color(_btncl), foregroundColor: Color(_fgcl))),
+                TextButton(onPressed: ()=> func('/'), child: Text('/'), style: TextButton.styleFrom(backgroundColor: Color(_btncl), foregroundColor: Color(_fgcl))),
               ],
             ),
           ],
@@ -88,7 +95,15 @@ class _MyAppState extends State<MyApp> {
       ),
     );
   }
-
+  void toggle (bool? al){
+    setState(() {
+      _bgcl = 0xFFFFFFFF - _bgcl + 0xFF000000;
+      _rescl = 0xFFFFFFFF - _rescl + 0xFF000000;
+      _btncl = 0xFFFFFFFF - _btncl + 0xFF000000;
+      _fgcl = 0xFFFFFFFF - _fgcl + 0xFF000000;
+      _mem=!_mem;
+    });
+  }
   void click(int input){
       setState(() {
         if(input==-2){
