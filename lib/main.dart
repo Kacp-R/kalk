@@ -45,7 +45,7 @@ class _MyAppState extends State<MyApp> {
               children: [
                 TextButton(onPressed: ()=> func('cl'), child: Text('cl'), style: TextButton.styleFrom(minimumSize: Size(120, 35)),),
                 TextButton(onPressed: ()=> func('dl'), child: Text('dl')),
-                TextButton(onPressed: ()=> func(''), child: Text(' ')),
+                TextButton(onPressed: ()=> click(-2), child: Text('+/-')),
               ],
             ),
             Row(
@@ -94,6 +94,18 @@ class _MyAppState extends State<MyApp> {
 
   void click(int input){
       setState(() {
+        if(input==-2){
+          if(_firstS=="")
+            return;
+          if(double.parse(_firstS)<0){
+            _firstS = _firstS.substring(1, _firstS.length);
+          }else{
+            if(double.parse(_firstS)>0){
+              _firstS='-$_firstS';
+            }
+          }
+          return;
+        }
         if(input==-1){
           if(_dec)
             return;
