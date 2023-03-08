@@ -22,6 +22,7 @@ class _MyAppState extends State<MyApp> {
   int _rescl = 0xFFFAFAEA;
   int _fgcl = 0xFF000000;
   int _btncl = 0xFFEEEEEE;
+  int _bnrcl = 0xFF999999;
   bool _mem = false;
 
   @override
@@ -33,6 +34,9 @@ class _MyAppState extends State<MyApp> {
         backgroundColor: Color(_bgcl),
         appBar: AppBar(
           title: const Text('Calculator'),
+          backgroundColor: Color(_bnrcl),
+          foregroundColor: Color(_btncl),
+          centerTitle: true,
         ),
         body: Column(
           children: [
@@ -166,6 +170,7 @@ class _MyAppState extends State<MyApp> {
       _rescl = 0xFFFFFFFF - _rescl + 0xFF000000;
       _btncl = 0xFFFFFFFF - _btncl + 0xFF000000;
       _fgcl = 0xFFFFFFFF - _fgcl + 0xFF000000;
+      _bnrcl = 0xFFFFFFFF - _bnrcl + 0xFF000000;
       _mem = !_mem;
     });
   }
