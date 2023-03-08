@@ -5,7 +5,7 @@ void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatefulWidget{
+class MyApp extends StatefulWidget {
   @override
   State<MyApp> createState() => _MyAppState();
 }
@@ -29,138 +29,193 @@ class _MyAppState extends State<MyApp> {
     // TODO: implement build
     return MaterialApp(
       title: "test1",
-        home: Scaffold(
+      home: Scaffold(
         backgroundColor: Color(_bgcl),
-    body: Column(
-    children: [
-    Expanded(flex: 1, child: Container()), // empty space
-    Expanded(
-    flex: 4,
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-    children: [
-          Switch(value: _mem, onChanged: (bool)=> toggle()),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-
-            children: [
-              ElevatedButton(onPressed: ()=> copy(1), child: Text('$_secondS'), style: ElevatedButton.styleFrom(minimumSize: Size(120, 35), backgroundColor: Color(_rescl), foregroundColor: Color(_fgcl))),
-              ElevatedButton(onPressed: ()=> copy(0), child: Text('$_firstS'), style: ElevatedButton.styleFrom(minimumSize: Size(120, 35), backgroundColor: Color(_rescl), foregroundColor: Color(_fgcl))),
-            ],
-          ),
-          Column(
+        appBar: AppBar(
+          title: const Text('Calculator'),
+        ),
+        body: Column(
           children: [
+            Switch(value: _mem, onChanged: (bool)=> toggle()),
+            Expanded(
+              child: Container(
+                  padding: const EdgeInsets.all(16.0),
+                  alignment: Alignment.bottomRight,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: Container(
+                            color: Color(_rescl),
+                            child: InkWell(
+                              onTap: () => copy(1),
+                              child: Text(
+                                '$_secondS',
+                                style: TextStyle(
+                                  color: Color(_fgcl), // custom color
+                                  fontSize: Theme.of(context).textTheme.displaySmall?.fontSize, // headline3 font size
+                                  fontWeight: Theme.of(context).textTheme.displaySmall?.fontWeight, // headline3 font weight
+                                  letterSpacing: Theme.of(context).textTheme.displaySmall?.letterSpacing, // headline3 letter spacing
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: Container(
+                            color: Color(_rescl),
+                            child: InkWell(
+                              onTap: () => copy(0),
+                              child: Text(
+                                '$_firstS',
+                                style: TextStyle(
+                                  color: Color(_fgcl), // custom color
+                                  fontSize: Theme.of(context).textTheme.displaySmall?.fontSize, // headline3 font size
+                                  fontWeight: Theme.of(context).textTheme.displaySmall?.fontWeight, // headline3 font weight
+                                  letterSpacing: Theme.of(context).textTheme.displaySmall?.letterSpacing, // headline3 letter spacing
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  )),
+            ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                TextButton(onPressed: ()=> func('cl'), child: Text('cl'), style: TextButton.styleFrom(minimumSize: Size(120, 35), backgroundColor: Color(_btncl), foregroundColor: Color(_fgcl))),
-                TextButton(onPressed: ()=> func('dl'), child: Text('dl'), style: TextButton.styleFrom(backgroundColor: Color(_btncl), foregroundColor: Color(_fgcl))),
-                TextButton(onPressed: ()=> click(-2), child: Text('+/-'), style: TextButton.styleFrom(backgroundColor: Color(_btncl), foregroundColor: Color(_fgcl))),
+                _buildButton('CL', () => func('cl')),
+                _buildButton('DL', () => func('dl')),
+                _buildButton('+/-', () => func('+-')),
               ],
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                TextButton(onPressed: ()=> click(1), child: Text('1'), style: TextButton.styleFrom(backgroundColor: Color(_btncl), foregroundColor: Color(_fgcl))),
-                TextButton(onPressed: ()=> click(2), child: Text('2'), style: TextButton.styleFrom(backgroundColor: Color(_btncl), foregroundColor: Color(_fgcl))),
-                TextButton(onPressed: ()=> click(3), child: Text('3'), style: TextButton.styleFrom(backgroundColor: Color(_btncl), foregroundColor: Color(_fgcl))),
-                TextButton(onPressed: ()=> func('+'), child: Text('+'), style: TextButton.styleFrom(backgroundColor: Color(_btncl), foregroundColor: Color(_fgcl))),
+                _buildButton('7', () => click(7)),
+                _buildButton('8', () => click(8)),
+                _buildButton('9', () => click(9)),
+                _buildButton('/', () => func('/')),
               ],
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                TextButton(onPressed: ()=> click(4), child: Text('4'), style: TextButton.styleFrom(backgroundColor: Color(_btncl), foregroundColor: Color(_fgcl))),
-                TextButton(onPressed: ()=> click(5), child: Text('5'), style: TextButton.styleFrom(backgroundColor: Color(_btncl), foregroundColor: Color(_fgcl))),
-                TextButton(onPressed: ()=> click(6), child: Text('6'), style: TextButton.styleFrom(backgroundColor: Color(_btncl), foregroundColor: Color(_fgcl))),
-                TextButton(onPressed: ()=> func('-'), child: Text('-'), style: TextButton.styleFrom(backgroundColor: Color(_btncl), foregroundColor: Color(_fgcl))),
+                _buildButton('4', () => click(4)),
+                _buildButton('5', () => click(5)),
+                _buildButton('6', () => click(6)),
+                _buildButton('*', () => func('*')),
               ],
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                TextButton(onPressed: ()=> click(7), child: Text('7'), style: TextButton.styleFrom(backgroundColor: Color(_btncl), foregroundColor: Color(_fgcl))),
-                TextButton(onPressed: ()=> click(8), child: Text('8'), style: TextButton.styleFrom(backgroundColor: Color(_btncl), foregroundColor: Color(_fgcl))),
-                TextButton(onPressed: ()=> click(9), child: Text('9'), style: TextButton.styleFrom(backgroundColor: Color(_btncl), foregroundColor: Color(_fgcl))),
-                TextButton(onPressed: ()=> func('*'), child: Text('*'), style: TextButton.styleFrom(backgroundColor: Color(_btncl), foregroundColor: Color(_fgcl))),
+                _buildButton('1', () => click(1)),
+                _buildButton('2', () => click(2)),
+                _buildButton('3', () => click(3)),
+                _buildButton('-', () => func('-')),
               ],
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                TextButton(onPressed: ()=> click(-1), child: Text(','), style: TextButton.styleFrom(backgroundColor: Color(_btncl), foregroundColor: Color(_fgcl))),
-                TextButton(onPressed: ()=> click(0), child: Text('0'), style: TextButton.styleFrom(backgroundColor: Color(_btncl), foregroundColor: Color(_fgcl))),
-                TextButton(onPressed: ()=> func('='), child: Text('='), style: TextButton.styleFrom(backgroundColor: Color(_btncl), foregroundColor: Color(_fgcl))),
-                TextButton(onPressed: ()=> func('/'), child: Text('/'), style: TextButton.styleFrom(backgroundColor: Color(_btncl), foregroundColor: Color(_fgcl))),
+                _buildButton('.', () => click(-1)),
+                _buildButton('0', () => click(0)),
+                _buildButton('=', () => func('=')),
+                _buildButton('+', () => func('+')),
               ],
             ),
           ],
         ),
-        ],
-        ),
-    ),
-          ],
-    ),
       ),
     );
   }
-  void toggle (){
+
+  Widget _buildButton(String buttonText, VoidCallback onPressed) {
+    return buttonText == 'CL'
+        ? Expanded(
+            flex: 2,
+            child: Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: ElevatedButton(
+                onPressed: onPressed,
+                child: Text(buttonText),
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Color(_btncl),
+                    foregroundColor: Color(_fgcl)),
+              ),
+            ),
+          )
+        : Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: ElevatedButton(
+                onPressed: onPressed,
+                child: Text(buttonText),
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: Color(_btncl),
+                    foregroundColor: Color(_fgcl)),
+              ),
+            ),
+          );
+  }
+
+  void toggle() {
     setState(() {
       _bgcl = 0xFFFFFFFF - _bgcl + 0xFF000000;
       _rescl = 0xFFFFFFFF - _rescl + 0xFF000000;
       _btncl = 0xFFFFFFFF - _btncl + 0xFF000000;
       _fgcl = 0xFFFFFFFF - _fgcl + 0xFF000000;
-      _mem=!_mem;
+      _mem = !_mem;
     });
   }
-  void click(int input){
-      setState(() {
-        if(input==-2){
-          if(_firstS=="")
-            return;
-          if(double.parse(_firstS)<0){
-            _firstS = _firstS.substring(1, _firstS.length);
-          }else{
-            if(double.parse(_firstS)>0){
-              _firstS='-$_firstS';
-            }
+
+  void click(int input) {
+    setState(() {
+      if (input == -2) {
+        if (_firstS == "") return;
+        if (double.parse(_firstS) < 0) {
+          _firstS = _firstS.substring(1, _firstS.length);
+        } else {
+          if (double.parse(_firstS) > 0) {
+            _firstS = '-$_firstS';
           }
-          return;
         }
-        if(input==-1){
-          if(_dec)
-            return;
-          _firstS+='.';
-          _dec=true;
-          _decC = _firstS.length;
-          return;
-        }
-        _firstS+=input.toString();
-      });
+        return;
+      }
+      if (input == -1) {
+        if (_dec) return;
+        _firstS += '.';
+        _dec = true;
+        _decC = _firstS.length;
+        return;
+      }
+      _firstS += input.toString();
+    });
   }
-  void copy(int val){
-    if(val==0)
+
+  void copy(int val) {
+    if (val == 0)
       Clipboard.setData(ClipboardData(text: "$_firstS"));
     else
       Clipboard.setData(ClipboardData(text: "$_secondS"));
   }
-  void func(String input){
+
+  void func(String input) {
     setState(() {
-      if(input=='cl') {
-        _first=0;
-        _second=0;
-        _firstS='';
-        _secondS='';
-        _dec=false;
-    }
-      if(input=='dl') {
+      if (input == 'cl') {
+        _first = 0;
+        _second = 0;
+        _firstS = '';
+        _secondS = '';
+        _dec = false;
+      }
+      if (input == 'dl') {
         if (_firstS != null && _firstS.length > 0) {
           _firstS = _firstS.substring(0, _firstS.length - 1);
-          if(_firstS.length+1==_decC)
-            _dec = false;
+          if (_firstS.length + 1 == _decC) _dec = false;
         }
-
-      }else {
+      } else {
         if (input == '=') {
           funcC(_last);
         } else {
@@ -170,7 +225,8 @@ class _MyAppState extends State<MyApp> {
       }
     });
   }
-  void funcC(String inp){
+
+  void funcC(String inp) {
     if (_firstS == '' || inp == '') return;
     _first = double.parse(_firstS);
     if (_secondS != '') {
