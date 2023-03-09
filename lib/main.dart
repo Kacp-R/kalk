@@ -147,7 +147,7 @@ class _MyAppState extends State<MyApp> {
                 style: ElevatedButton.styleFrom(
                     backgroundColor: Color(_btncl),
                     foregroundColor: Color(_fgcl),
-                    minimumSize: Size(20, 50)
+                    minimumSize: const Size(20, 50)
                 ),
               ),
             ),
@@ -161,7 +161,7 @@ class _MyAppState extends State<MyApp> {
                 style: ElevatedButton.styleFrom(
                     backgroundColor: Color(_btncl),
                     foregroundColor: Color(_fgcl),
-                    minimumSize: Size(20, 50)
+                    minimumSize: const Size(20, 50)
                 ),
               ),
             ),
