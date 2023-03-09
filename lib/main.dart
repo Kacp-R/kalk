@@ -40,7 +40,7 @@ class _MyAppState extends State<MyApp> {
         ),
         body: Column(
           children: [
-            Switch(value: _mem, onChanged: (bool)=> toggle()),
+            IconButton(onPressed: toggle, icon: _mem ? Icon(Icons.nights_stay, color: Colors.white) : Icon(Icons.sunny, color: Colors.black)),
             Expanded(
               child: Container(
                   padding: const EdgeInsets.all(16.0),
