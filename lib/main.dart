@@ -40,7 +40,11 @@ class _MyAppState extends State<MyApp> {
         ),
         body: Column(
           children: [
-            IconButton(onPressed: toggle, icon: _mem ? Icon(Icons.nights_stay, color: Colors.white) : Icon(Icons.sunny, color: Colors.black)),
+            IconButton(
+                onPressed: toggle,
+                icon: _mem
+                    ? Icon(Icons.nights_stay, color: Colors.white)
+                    : Icon(Icons.sunny, color: Colors.black)),
             Expanded(
               child: Container(
                   padding: const EdgeInsets.all(16.0),
@@ -147,8 +151,7 @@ class _MyAppState extends State<MyApp> {
                 style: ElevatedButton.styleFrom(
                     backgroundColor: Color(_btncl),
                     foregroundColor: Color(_fgcl),
-                    minimumSize: const Size(20, 50)
-                ),
+                    minimumSize: const Size(20, 50)),
               ),
             ),
           )
@@ -161,8 +164,7 @@ class _MyAppState extends State<MyApp> {
                 style: ElevatedButton.styleFrom(
                     backgroundColor: Color(_btncl),
                     foregroundColor: Color(_fgcl),
-                    minimumSize: const Size(20, 50)
-                ),
+                    minimumSize: const Size(20, 50)),
               ),
             ),
           );
